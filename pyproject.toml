@@ -1,0 +1,93 @@
+# -------------------------------
+# build-system
+# -------------------------------
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+# -------------------------------
+# project (PEP 621 metadata)
+# -------------------------------
+[project]
+name = "verl"
+dynamic = ["version"]
+description = "verl: Volcano Engine Reinforcement Learning for LLM"
+license = {file = "LICENSE"}
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.10"
+
+authors = [
+  { name = "Bytedance - Seed - MLSys", email = "zhangchi.usc1992@bytedance.com" },
+  { name = "Bytedance - Seed - MLSys", email = "gmsheng@connect.hku.hk" },
+]
+
+dependencies = [
+    "torch==2.4.0",
+    "aiohttp==3.12.13",
+    "accelerate==1.6.0",
+    "codetiming==1.4.0",
+    "datasets==3.5.0",
+    "fastapi==0.115.12",
+    "dill==0.3.8",
+    "hydra-core==1.3.2",
+    "numpy==1.26.4",
+    "pandas==2.2.3",
+    "peft==0.15.2",
+    "pyarrow==19.0.1",
+    "pybind11==2.13.6",
+    "pylatexenc==2.10",
+    "ray==2.44.1",
+    "tensordict==0.5.0",
+    "transformers==4.49.0",
+    "vllm==0.6.3",
+    "wandb==0.19.9",
+    "matplotlib==3.10.1",
+    "openpyxl==3.1.5",
+    "XlsxWriter==3.2.3",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "yapf",
+  "py-spy==0.4.0",
+]
+prime = ["pyext"]
+gpu = [
+    "liger-kernel",
+    "flash-attn==2.7.4.post1"
+]
+all = [
+    "pytest", "yapf", "py-spy==0.4.0",
+    "pyext",
+    "liger-kernel", "flash-attn==2.7.4.post1"
+]
+
+[project.urls]
+Homepage = "https://github.com/volcengine/verl"
+
+# -------------------------------
+# tool.setuptools - Additional config
+# -------------------------------
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {file = "verl/version/version"}
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["verl*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+verl = [
+  "version/*",
+  "trainer/config/*.yaml"
+]

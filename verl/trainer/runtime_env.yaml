@@ -1,0 +1,18 @@
+working_dir: ./
+excludes: ["/.git/"]
+env_vars:
+  TORCH_NCCL_AVOID_RECORD_STREAMS: "1"
+  NCCL_IB_DISABLE: "0"
+  NCCL_IB_GID_INDEX: "3"
+  NCCL_SOCKET_IFNAME: "eth"
+  NCCL_IB_HCA: "mlx5"
+  USED_MODEL: "no_api"
+  LOGS_PATH: "data/logs"
+  TENSORBOARD_DIR: "tensorboard"
+  VLLM_ATTENTION_BACKEND: "XFORMERS"
+  HYDRA_FULL_ERROR: "1"
+  CUDA_LAUNCH_BLOCKING: "1"
+  WANDB_MODE: "online"
+  WANDB_DIR_PATH: "wandb"
+  WANDB_DIR: "wandb"
+  WANDB_API_KEY: ""
